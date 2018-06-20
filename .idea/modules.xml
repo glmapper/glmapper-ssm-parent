@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/glmapper-common/glmapper-common.iml" filepath="$PROJECT_DIR$/glmapper-common/glmapper-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glmapper-dao/glmapper-dao.iml" filepath="$PROJECT_DIR$/glmapper-dao/glmapper-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glmapper-parent.iml" filepath="$PROJECT_DIR$/glmapper-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glmapper-service/glmapper-service.iml" filepath="$PROJECT_DIR$/glmapper-service/glmapper-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glmapper-war/glmapper-war.iml" filepath="$PROJECT_DIR$/glmapper-war/glmapper-war.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glmapper-web/glmapper-web.iml" filepath="$PROJECT_DIR$/glmapper-web/glmapper-web.iml" />
+    </modules>
+  </component>
+</project>

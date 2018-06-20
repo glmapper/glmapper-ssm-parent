@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="glmapper-war:war">
+    <output-path>$PROJECT_DIR$/glmapper-war/target</output-path>
+    <root id="archive" name="glmapper-war.war">
+      <element id="artifact" artifact-name="glmapper-war:war exploded" />
+    </root>
+  </artifact>
+</component>

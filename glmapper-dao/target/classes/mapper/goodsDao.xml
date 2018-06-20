@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glmapper.framerwork.dao.GoodsDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<select id="queryById" resultType="com.glmapper.framerwork.dmo.Goods" parameterType="long">
+		<!-- 具体的sql -->
+		SELECT
+			goods_id,
+			goodsname,
+			number
+		FROM
+			goods
+		WHERE
+			goods_id = #{goodsId}
+	</select>
+	
+	<select id="queryAll" resultType="com.glmapper.framerwork.dmo.Goods">
+		SELECT
+			goods_id,
+			goodsname,
+			number
+		FROM
+			goods
+		ORDER BY
+			goods_id
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<update id="reduceNumber">
+		UPDATE goods
+		SET number = number - 1
+		WHERE
+			goods_id = #{goodsId}
+		AND number > 0
+	</update>
+</mapper>

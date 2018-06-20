@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glmapper.framerwork.dao.OrderInfoDao">
+	<insert id="insertOrderInfo" parameterType="com.glmapper.framerwork.dmo.OrderInfo" >
+		<!-- ignore 主键冲突，报错 -->
+		INSERT INTO orderInfo (order_id, goods_id,user_id,order_time)
+		VALUES (#{orderId}, #{goodsId}, #{userId},#{orderTime})
+	</insert>
+	
+	<select id="queryByOrderId" resultType="com.glmapper.framerwork.dmo.OrderInfo">
+		<!-- 如何告诉MyBatis把结果映射到Appointment同时映射book属性 -->
+		<!-- 可以自由控制SQL -->
+		SELECT
+			*
+		FROM
+			orderInfo
+		WHERE
+			order_id = #{orderId}
+	</select>
+</mapper>

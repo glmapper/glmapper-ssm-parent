@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+	<!-- 1.配置数据库相关参数properties的属性：${url} -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<!-- 扫描service包下所有使用注解的类型 -->
+	<context:component-scan base-package="com.glmapper.framerwork.service" />
+	<!-- 引入dao和service配置文件 -->
+	<import resource="spring-dao.xml" />
+	<import resource="spring-service.xml" />
+
+    <!-- type 1 -->
+	<!--&lt;!&ndash; 定义被代理者 &ndash;&gt;-->
+	<!--<bean id="goodsServiceImpl" class="com.glmapper.framerwork.service.impl.GoodsServiceImpl"></bean>-->
+
+	<!--&lt;!&ndash; 定义通知内容，也就是切入点执行前后需要做的事情 &ndash;&gt;-->
+	<!--<bean id="loggerHelper" class="com.glmapper.framerwork.aspect.LoggerHelper"></bean>-->
+
+	<!--&lt;!&ndash;定义切入点位 置 &ndash;&gt;-->
+	<!--<bean id="loggerPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">-->
+		<!--<property name="pattern" value=".*query.*"></property>-->
+	<!--</bean>-->
+
+	<!--&lt;!&ndash; 使切入点与通知相关联，完成切面配置 &ndash;&gt;-->
+	<!--<bean id="loggerHelperAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
+		<!--<property name="advice" ref="loggerHelper"></property>-->
+		<!--<property name="pointcut" ref="loggerPointcut"></property>-->
+	<!--</bean>-->
+
+	<!--&lt;!&ndash; 设置代理 &ndash;&gt;-->
+	<!--<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+		<!--&lt;!&ndash; 代理的对象，有睡觉能力 &ndash;&gt;-->
+		<!--<property name="target" ref="goodsServiceImpl"></property>-->
+		<!--&lt;!&ndash; 使用切面 &ndash;&gt;-->
+		<!--<property name="interceptorNames" value="loggerHelperAdvisor"></property>-->
+		<!--&lt;!&ndash; 代理接口，睡觉接口 &ndash;&gt;-->
+		<!--<property name="proxyInterfaces" value="com.glmapper.framerwork.service.GoodsService"></property>-->
+	<!--</bean>-->
+	<!---->
+
+
+	<!-- type 2 -->
+	<!-- 定义通知内容，也就是切入点执行前后需要做的事情 -->
+	<!--<bean id="loggerAspect" class="com.glmapper.framerwork.aspect.LoggerAspect"></bean>-->
+
+	<!--<aop:config>-->
+		<!--&lt;!&ndash;定义切面&ndash;&gt;-->
+		<!--<aop:aspect ref="loggerAspect">-->
+			<!--<aop:pointcut id="loggerPointCut"  expression="execution(* com.glmapper.framerwork.service.impl.*.*(..)) " />-->
+			<!--&lt;!&ndash; 定义一个 Advice &ndash;&gt;-->
+			<!--&lt;!&ndash; 前置通知 &ndash;&gt;-->
+			<!--<aop:before pointcut-ref="loggerPointCut" method="before" />-->
+			<!--&lt;!&ndash; 后置通知 &ndash;&gt;-->
+			<!--<aop:after-returning pointcut-ref="loggerPointCut" method="afterReturning"/>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
+
+
+
+	<!--&lt;!&ndash; type 3 &ndash;&gt;-->
+	<!--<aop:aspectj-autoproxy />-->
+	<!--&lt;!&ndash; 定义通知内容，也就是切入点执行前后需要做的事情 &ndash;&gt;-->
+	<!--<bean id="loggerAspectInject" class="com.glmapper.framerwork.aspect.LoggerAspectInject"></bean>-->
+	<!--&lt;!&ndash; 定义被代理者 &ndash;&gt;-->
+	<!--<bean id="goodsServiceImpl" class="com.glmapper.framerwork.service.impl.GoodsServiceImpl"></bean>-->
+
+
+	<!-- type 4 ;-->
+
+	<!--&lt;!&ndash; 配置bean &ndash;&gt;-->
+	<!--<bean id="goodsService" class="com.glmapper.framerwork.service.impl.GoodsServiceImpl">
+	</bean>-->
+	<!-- 配置通知方法类 -->
+	<bean id="loggerAspectHelper" class="com.glmapper.framerwork.aspect.LoggerAspectHelper">
+	</bean>
+
+	<aop:config>
+		<aop:aspect id="configAspect" ref="loggerAspectHelper">
+			<!--配置com.spring.aop包下所有类或接口的所有方法 -->
+			<aop:pointcut id="cutIn" expression="execution(* com.glmapper.framerwork.service.impl.*.*(..))" />
+			<aop:before   pointcut-ref="cutIn" method="doBefore" />
+			<aop:after    pointcut-ref="cutIn" method="doAfter" />
+			<aop:around   pointcut-ref="cutIn" method="doAround" />
+			<aop:after-throwing pointcut-ref="cutIn" method="doThrowing" throwing="ex" />
+		</aop:aspect>
+	</aop:config>
+
+
+</beans>
