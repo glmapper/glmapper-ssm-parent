@@ -15,7 +15,12 @@
     <module>glmapper-war</module>
     <module>glmapper-dao</module>
   </modules>
-  
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
   <dependencies>
   	<!-- 1.日志 -->
 		<!-- 实现slf4j接口并整合 -->
