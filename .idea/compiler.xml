@@ -14,12 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="glmapper-common" target="1.5" />
-      <module name="glmapper-dao" target="1.5" />
-      <module name="glmapper-parent" target="1.5" />
-      <module name="glmapper-service" target="1.5" />
-      <module name="glmapper-war" target="1.5" />
-      <module name="glmapper-web" target="1.5" />
+      <module name="glmapper-common" target="1.8" />
+      <module name="glmapper-dao" target="1.8" />
+      <module name="glmapper-parent" target="1.8" />
+      <module name="glmapper-service" target="1.8" />
+      <module name="glmapper-war" target="1.8" />
+      <module name="glmapper-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
